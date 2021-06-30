@@ -1,5 +1,3 @@
+document.getElementById("hello").innerHTML = "HelloWorld";
 
-function helloWorld () {
-  document.getElementById('hello').innterHTML = "helloWorld";
-}
 
