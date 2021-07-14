@@ -1,3 +1,20 @@
 document.getElementById("hello").innerHTML = "HelloWorld";
 
+var baseurl = "https://localhost:8080";
+var nameurl = "/name";
 
+function httpGetAsync(url) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+      callback(xmlHttp.responseText);
+  }
+  xmlHttp.open("GET", url, true); // true for asynchronous
+  xmlHttp.send(null);
+  console.log(xmlHttp.responseText);
+}
+
+window.onload = function () {
+  var url = baseurl + nameurl;
+  httpGetAsync(url);
+}
