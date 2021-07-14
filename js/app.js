@@ -11,7 +11,12 @@ function httpGetAsync(url) {
   }
   xmlHttp.open("GET", url, true); // true for asynchronous
   xmlHttp.send(null);
-  console.log(xmlHttp.responseText);
+  xmlHttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(xmlHttp.responseText);
+    }
+  }
+  console.log("end ajax call");
 }
 
 window.onload = function () {
