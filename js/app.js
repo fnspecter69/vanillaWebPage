@@ -29,3 +29,9 @@ window.onload = function () {
   var url = baseurl + nameurl;
   httpGetAsync(url);
 }
+
+const form = document.getElementById("emailForm");
+
+form.addEventListener('submit', (event) => {
+    console.log("form submited");
+});

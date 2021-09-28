@@ -15,12 +15,12 @@
     </nav>
     <div class="mainContent">
       <h2>Create new Email</h2>
-      <form>
+      <form method="post" id="emailForm" action="http://localhost:8080/email">
         <label>To:</label><br>
-        <input type="text" id="emailTo"><br>
+        <input type="text" id="to"><br>
         <label>From:</label><br>
-        <input type="text" id="emailSender"><br>
-        <textarea name="paragraph_text" cols="50" rows="10"></textarea><br><br>
+        <input type="text" id="from"><br>
+        <textarea name="paragraph_text" cols="50" rows="10" id="body"></textarea><br><br>
         <input type="submit" value="Send">
       </form>
     </div>
