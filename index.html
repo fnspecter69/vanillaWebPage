@@ -17,11 +17,11 @@
       <h2>Create new Email</h2>
       <form method="post" id="emailForm" action="http://localhost:8080/email">
         <label>To:</label><br>
-        <input type="text" id="to"><br>
+        <input type="text" id="to" name="to"><br>
         <label>From:</label><br>
-        <input type="text" id="from"><br>
-        <textarea name="paragraph_text" cols="50" rows="10" id="body"></textarea><br><br>
-        <input type="submit" value="Send">
+        <input type="text" id="from" name="from"><br>
+        <textarea name="paragraph_text" cols="50" rows="10" id="body" name="body"></textarea><br><br>
+        <button onclick="sendEmail()">Send</button>
       </form>
     </div>
     <script type="text/javascript" src="js/app.js"></script>

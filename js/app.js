@@ -3,6 +3,7 @@ const newDiv = document.createElement("div");
 
 var baseurl = "http://localhost:8080";
 var nameurl = "/name";
+var emailurl = "/email"
 
 function httpGetAsync(url) {
   var xmlHttp = new XMLHttpRequest();
@@ -15,7 +16,6 @@ function httpGetAsync(url) {
       console.log("success");
       const getName = document.createTextNode(xmlHttp.responseText);
       newDiv.appendChild(getName);
-      console.log(xmlHttp.responseText);
       document.body.insertBefore(newDiv, document.getElementById("hello"));
     } else {
       console.log("error");
@@ -30,8 +30,15 @@ window.onload = function () {
   httpGetAsync(url);
 }
 
-const form = document.getElementById("emailForm");
-
-form.addEventListener('submit', (event) => {
-    console.log("form submited");
-});
+function sendEmail() {
+  console.log(send email);
+  var to = document.getElementById('to');
+  var from = document.getElementById('from');
+  var body = document.getElementById('body');
+  var url = baseurl + emailurl;
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", url);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  var emailData = JSON.stringify({ "to": to.value, "from": from.value, "body": body.value });
+  xhttp.send(emailData);
+}
