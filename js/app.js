@@ -22,7 +22,6 @@ function httpGetAsync(url) {
     }
   }
   xmlHttp.send(null);
-  console.log("end ajax call");
 }
 
 window.onload = function () {
@@ -31,14 +30,15 @@ window.onload = function () {
 }
 
 function sendEmail() {
-  console.log(send email);
-  var to = document.getElementById('to');
-  var from = document.getElementById('from');
-  var body = document.getElementById('body');
+  var to = document.getElementById('to').value;
+  var from = document.getElementById('from').value;
+  var body = document.getElementById('body').value;
   var url = baseurl + emailurl;
+  console.log('send email to ' + url);
   const xhttp = new XMLHttpRequest();
+  var emailData = JSON.stringify({ "to": to, "from": from, "body": body });
+  console.log(emailData);
   xhttp.open("POST", url);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  var emailData = JSON.stringify({ "to": to.value, "from": from.value, "body": body.value });
+  xhttp.setRequestHeader("Content-Type", "application/json");
   xhttp.send(emailData);
 }
