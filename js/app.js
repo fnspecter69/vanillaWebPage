@@ -30,26 +30,20 @@ window.onload = function () {
 }
 
 function sendEmail() {
+  var url = baseurl + emailurl;
   var to = document.getElementById('to').value;
   var from = document.getElementById('from').value;
   var body = document.getElementById('body').value;
-  var url = baseurl + emailurl;
-  console.log('send email to ' + url);
   const xhttp = new XMLHttpRequest();
   var emailData = JSON.stringify({ "to": to, "from": from, "body": body });
-  console.log(emailData);
-  console.log(url);
-  xhttp.open("POST", url);
-  xhttp.setRequestHeader("Accept", "application/json")
-  xhttp.setRequestHeader("Content-Type", "application/json");
+
   xhttp.onreadystatechange = function () {
-    console.log("on ready state email status");
-    console.log(this.status);
-    console.log('ready state is ' + this.readyState);
-    if (this.readyState == 4) {
-      console.log('path');
-      console.log(xhttp.responseText);
+    if (this.readyState == 4 && this.status == 201) {
+      alert("email has been sent");
     }
   }
+  xhttp.open("POST", url, true);
+  xhttp.setRequestHeader("Accept", "application/json")
+  xhttp.setRequestHeader("Content-Type", "application/json");
   xhttp.send(emailData);
 }
