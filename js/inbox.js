@@ -34,6 +34,8 @@ function displayAllEmail() {
       var inbox = document.querySelector('#inboxContent');
       inbox.appendChild(list);
 
+    } else {
+      console.log("no new email");
     }
   }
   xmlHttp.send(null);
