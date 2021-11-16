@@ -13,7 +13,7 @@ function displayAllEmail() {
     var emailDiv = document.createElement("div");
     var list = document.createElement('ul');
     list.setAttribute("id", "inboxList");
-
+    console.log(this.status);
     if (this.readyState == 4 && this.status == 302) {
       console.log("success get all emails");
       const response = JSON.parse(xmlHttp.responseText);
@@ -36,6 +36,8 @@ function displayAllEmail() {
 
     } else {
       console.log("no new email");
+      var content = document.getElementById("inboxContent");
+      content.textContent = "Your inbox is empty";
     }
   }
   xmlHttp.send(null);
