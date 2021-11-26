@@ -2,6 +2,7 @@ var baseurl = "http://localhost:8080";
 var getAllEmailsUrl = "/emails";
 var deleteButton = document.createElement('button');
 deleteButton.innerHTML = "delete";
+var content = document.getElementById("inboxContent");
 
 function displayAllEmail() {
   console.log("displayAllEmail");
@@ -16,6 +17,7 @@ function displayAllEmail() {
     console.log(this.status);
     if (this.readyState == 4 && this.status == 302) {
       console.log("success get all emails");
+      content.textContent = "";
       const response = JSON.parse(xmlHttp.responseText);
       response.forEach((email, i) => {
         var liElem = document.createElement("li");
@@ -25,6 +27,7 @@ function displayAllEmail() {
         checkboxElem.setAttribute("value", email.id);
         var emailLabel = document.createElement("label");
         emailLabel.textContent = email.from;
+        emailLabel.style.backgroundColor = "grey";
         liElem.setAttribute("id", email.id);
         liElem.appendChild(checkboxElem);
         liElem.appendChild(emailLabel);
@@ -36,7 +39,6 @@ function displayAllEmail() {
 
     } else {
       console.log("no new email");
-      var content = document.getElementById("inboxContent");
       content.textContent = "Your inbox is empty";
     }
   }
@@ -68,6 +70,10 @@ function deleteEmail(){
 
   xmlHttp.send(null);
 
+}
+
+function edit() {
+  console.log("edit");
 }
 window.onload = function () {
   displayAllEmail();
