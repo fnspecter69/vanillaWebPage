@@ -34,8 +34,9 @@ function sendEmail() {
   var to = document.getElementById('to').value;
   var from = document.getElementById('from').value;
   var body = document.getElementById('body').value;
+  var subject = document.getElementById('subject').value;
   const xhttp = new XMLHttpRequest();
-  var emailData = JSON.stringify({ "to": to, "from": from, "body": body });
+  var emailData = JSON.stringify({ "to": to, "from": from, "body": body , "subject": subject});
 
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 201) {

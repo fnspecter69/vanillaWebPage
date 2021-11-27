@@ -26,7 +26,7 @@ function displayAllEmail() {
         checkboxElem.setAttribute("type", "checkbox");
         checkboxElem.setAttribute("value", email.id);
         var emailLabel = document.createElement("label");
-        emailLabel.textContent = email.from;
+        emailLabel.textContent = email.subject;
         emailLabel.style.backgroundColor = "grey";
         liElem.setAttribute("id", email.id);
         liElem.appendChild(checkboxElem);
@@ -72,9 +72,44 @@ function deleteEmail(){
 
 }
 
-function edit() {
-  console.log("edit");
+// Get the modal
+var modal = document.getElementById("editModal");
+
+var checkBox = document.querySelectorAll("input[type='checkbox']:checked");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
 }
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  console.log(event);
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function update() {
+  modal.style.display = "none";
+}
+
+function edit() {
+  var checked =
+    Array.prototype.slice.call(document.querySelectorAll("input[type='checkbox']:checked"));
+
+  if (checked.length == 1) {
+    console.log("one selected");
+    var inputid = checked[0].value;
+    var findUrl = baseurl + "/email/" + inputid;
+    
+  }
+  modal.style.display = "block";
+}
+
 window.onload = function () {
   displayAllEmail();
 }
