@@ -105,7 +105,17 @@ function edit() {
     console.log("one selected");
     var inputid = checked[0].value;
     var findUrl = baseurl + "/email/" + inputid;
-    
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", findUrl, true);
+
+    xmlHttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 302) {
+        console.log("email found");
+        const response = JSON.parse(xmlHttp.responseText);
+      }
+    }
+
+    xmlHttp.send(null);
   }
   modal.style.display = "block";
 }
