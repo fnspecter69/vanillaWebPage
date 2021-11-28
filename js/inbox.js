@@ -51,7 +51,8 @@ function deleteEmail(){
   var xmlHttp = new XMLHttpRequest();
   var list = document.getElementById("inboxList");
   var checked =
-    Array.prototype.slice.call(document.querySelectorAll("input[type='checkbox']:checked"));
+    Array.prototype.slice.call(
+      document.querySelectorAll("input[type='checkbox']:checked"));
   console.log(checked);
   checked.forEach((item, i) => {
     var id = item.value;
@@ -93,23 +94,47 @@ window.onclick = function(event) {
   }
 }
 
+var to = document.getElementById("to");
+var from = document.getElementById("from");
+var subject = document.getElementById("subject");
+var body = document.getElementById("body");
+var updateId = "";
+
 function update() {
+  var updateUrl = baseurl + "/email/update/" + updateId;
+  var emailData =
+    JSON.stringify(
+      { "to": to.value, "from": from.value, "body": body.value ,
+      "subject": subject.value});
+  console.log(updateId);
+  console.log(emailData);
+  var xmlHttp = new XMLHttpRequest();
+
+  xmlHttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 302) {
+      console.log("email has been updated");
+    }
+  }
+  xmlHttp.open("PUT", updateUrl, true);
+  xmlHttp.setRequestHeader("Accept", "application/json")
+  xmlHttp.setRequestHeader("Content-Type", "application/json");
+  xmlHttp.send(emailData);
+  updateId = "";
   modal.style.display = "none";
 }
 
 function edit() {
   var checked =
-    Array.prototype.slice.call(document.querySelectorAll("input[type='checkbox']:checked"));
-  var to = document.getElementById("to");
-  var from = document.getElementById("from");
-  var subject = document.getElementById("subject");
-  var body = document.getElementById("body");
+    Array.prototype.slice.call(
+      document.querySelectorAll("input[type='checkbox']:checked"));
+
   if (checked.length == 1) {
     console.log("one selected");
     var inputid = checked[0].value;
+    updateId = inputid;
     var findUrl = baseurl + "/email/" + inputid;
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", findUrl, true);  
+    xmlHttp.open("GET", findUrl, true);
 
     xmlHttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 302) {
