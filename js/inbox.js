@@ -100,22 +100,34 @@ function update() {
 function edit() {
   var checked =
     Array.prototype.slice.call(document.querySelectorAll("input[type='checkbox']:checked"));
-
+  var to = document.getElementById("to");
+  var from = document.getElementById("from");
+  var subject = document.getElementById("subject");
+  var body = document.getElementById("body");
   if (checked.length == 1) {
     console.log("one selected");
     var inputid = checked[0].value;
     var findUrl = baseurl + "/email/" + inputid;
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", findUrl, true);
+    xmlHttp.open("GET", findUrl, true);  
 
     xmlHttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 302) {
         console.log("email found");
         const response = JSON.parse(xmlHttp.responseText);
+        to.value = response.to;
+        from.value = response.from;
+        subject.value = response.subject;
+        body.value = response.body;
       }
     }
 
     xmlHttp.send(null);
+  } else {
+    to.value = "";
+    from.value = "";
+    subject.value = "";
+    body.value = "";
   }
   modal.style.display = "block";
 }
