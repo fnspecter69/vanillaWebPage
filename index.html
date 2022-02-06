@@ -2,10 +2,11 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>simple vanilla html page</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>
+  <body class="about">
     <h1 class="mainHeader" id="hello"></h1>
     <nav class="navBar">
       <ul>
@@ -14,20 +15,22 @@
         <li><a href="pages/inbox.html">Inbox</a></li>
       </ul>
     </nav>
-    <div class="mainContent">
+    <div class="title">
       <h2>Create new Email</h2>
-      <div id="emailContent">
-        <label>To:</label><br>
-        <input type="text" id="to" name="to"><br>
-        <label>From:</label><br>
-        <input type="text" id="from" name="from"><br>
-        <label>Subject:</label><br>
-        <input type="text" id="subject" name="subject"><br>
-        <label>Body:</label><br>
-        <textarea name="paragraph_text" cols="50" rows="10" id="body" name="body"></textarea><br><br>
-        <button onclick="sendEmail()">Send</button>
-      </div>
     </div>
+    <div id="emailContent" class="form">
+      <label>To:</label>
+      <input type="text" id="to" name="to"><br>
+      <label>From:</label>
+      <input type="text" id="from" name="from"><br>
+      <label>Subject:</label>
+      <input type="text" id="subject" name="subject"><br>
+      <textarea name="paragraph_text" cols="50" rows="10" id="body" name="body" placeholder="Enter your message here."></textarea><br><br>
+      <button onclick="sendEmail()">Send</button>
+    </div><!-- end emailContent -->
+    <div class="mainContent">
+
+    </div><!--end mainContent-->
     <script type="text/javascript" src="js/app.js"></script>
   </body>
 </html>

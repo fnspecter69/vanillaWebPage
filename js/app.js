@@ -1,4 +1,4 @@
-document.getElementById("hello").innerHTML = "HelloWorld";
+document.getElementById("hello").innerHTML = "Test Page";
 const newDiv = document.createElement("div");
 
 var baseurl = "http://localhost:8080";
